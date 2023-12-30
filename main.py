@@ -17,13 +17,14 @@ while True:
     updates = response.json()['result']
     pprint(updates)
     if updates != []:
+        message = updates[-1]['message']
+        chat_id = message['chat']['id']
         requests.get(f'{URL}{TOKEN}/sendMessage?chat_id={chat_id}&text={"составь стишок из слов: ёлка  иголка зелёнка стоит светит торчит"}')
         # Обработайте каждое обновление
         for update in updates:
             offset = update['update_id'] + 1
             pprint(updates)
-            message = updates[-1]['message']
-            chat_id = message['chat']['id']
+            
             text = message['text']
 
             # Сделать проверку рифмованного текста
